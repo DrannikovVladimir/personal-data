@@ -111,7 +111,7 @@ const PreviewPage = () => {
           : children.map((child) => (
             <Item key={child.id}>
               <TextWrapper>
-                {child.name}
+                {child.name},
                 {' '}
                 {child.age}
                 {' '}
