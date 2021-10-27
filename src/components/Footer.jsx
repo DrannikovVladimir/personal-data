@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 import colors from '../constants/color';
 
@@ -43,10 +44,12 @@ const Text = styled.p`
 `;
 
 const Footer = () => {
+  const { t } = useTranslation();
+
     return (
       <FooterSection>
         <FooterContainer>
-          <Text>all rights reserved</Text>
+          <Text>{t('footer.copy')}</Text>
         </FooterContainer>
       </FooterSection>
     );

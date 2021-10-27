@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 import Logo from './icons/Logo';
 import colors from '../constants/color';
@@ -83,6 +84,7 @@ const LinkItem = styled(Link)`
 `;
 
 const Header = () => {
+  const { t } = useTranslation();
   return (
     <HeaderSection>
       <HeaderContainer>
@@ -92,10 +94,10 @@ const Header = () => {
         <Nav>
           <List>
             <Item>
-              <LinkItem to="/">Форма</LinkItem>
+              <LinkItem to="/">{t('nav.form')}</LinkItem>
             </Item>
             <Item>
-              <LinkItem to="/preview">Превью</LinkItem>
+              <LinkItem to="/preview">{t('nav.preview')}</LinkItem>
             </Item>
           </List>
         </Nav>

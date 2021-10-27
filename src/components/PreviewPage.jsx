@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 import colors from '../constants/color';
 import { getFormattedYear } from '../helpers';
@@ -87,14 +88,13 @@ const FeedbackTextUser = styled(FeedbackText)`
   margin-bottom: 40px;
 `;
 
-
-
 const PreviewPage = () => {
+  const { t } = useTranslation();
   const { user, children } = useSelector((state) => state.user);
 
   return (
     <ContainerPreview>
-      <Title>Персональные данные</Title>
+      <Title>{t('previewPage.personalDataTitle')}</Title>
       {user.name && user.age
         ? <UserText>
             {user.name},
@@ -103,11 +103,11 @@ const PreviewPage = () => {
             {' '}
             лет
           </UserText>
-        : <FeedbackTextUser>Данных нет</FeedbackTextUser>}
-      <Title>Дети</Title>
+        : <FeedbackTextUser>{t('previewPage.feedbackPersonalData')}</FeedbackTextUser>}
+      <Title>{t('previewPage.childrenTitle')}</Title>
       <List>
         {children.length === 0
-          ? <FeedbackText>Детей нет</FeedbackText>
+          ? <FeedbackText>{t('previewPage.feedbackChildren')}</FeedbackText>
           : children.map((child) => (
             <Item key={child.id}>
               <TextWrapper>

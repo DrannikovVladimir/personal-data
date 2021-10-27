@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useTranslation } from 'react-i18next';
 
 import { saveData, addChild } from '../store/slices/userSlice';
 import colors from '../constants/color';
@@ -197,6 +198,7 @@ const validate = (child) => {
 }
 
 const FormPage = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user, children } = useSelector((state) => state.user);
   const history = useHistory();
@@ -208,12 +210,12 @@ const FormPage = () => {
     validationSchema: Yup.object({
       userName: Yup
         .string()
-        .required('Обязательное поле'),
+        .required(t('validation.required')),
       userAge: Yup
         .number()
-        .min(1, 'Больше 1 и меньше 99')
-        .max(99, 'Больше 1 и меньше 99')
-        .required('Обязательное поле'),
+        .min(1, t('validation.minMax'))
+        .max(99, t('validation.minMax'))
+        .required(t('validation.required')),
     }),
     onSubmit: async (values, actions) => {
       const validation = await validate(children);
@@ -237,9 +239,9 @@ const FormPage = () => {
     <FormSection>
       <FormContainer>
         <form onSubmit={formik.handleSubmit}>
-          <Title>Персональные данные</Title>
+          <Title>{t('formPage.personalDataTitle')}</Title>
           <FormGroup>
-            <Label htmlFor="name">Имя</Label>
+            <Label htmlFor="name">{t('formPage.labelName')}</Label>
             <Input
               id="name"
               name="userName"
@@ -252,7 +254,7 @@ const FormPage = () => {
             : null}
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="age">Возраст</Label>
+            <Label htmlFor="age">{t('formPage.labelAge')}</Label>
             <Input
               id="age"
               name="userAge"
@@ -265,21 +267,21 @@ const FormPage = () => {
             : null}
           </FormGroup>
           <ChildrenWrapper>
-            <TitleChild>Дети (макс.5)</TitleChild>
+            <TitleChild>{t('formPage.childrenTitle')}</TitleChild>
             {children.length === 5
               ? null
               : <ButtonAddChild type="button" onClick={handleAddChild}>
                   <Plus />
-                  Добавить ребенка
+                  {t('formPage.buttonAddChild')}
                 </ButtonAddChild>}
           </ChildrenWrapper>
           <List>
             {children.map((child) => (<FormChild key={child.id} id={child.id} />))}
           </List>
           {formik.errors.children && children.length > 0
-            ? <FeedbackValidation>Некорректно заполнена информация о детях</FeedbackValidation>
+            ? <FeedbackValidation>{t('formPage.feedbackChildren')}</FeedbackValidation>
             : null}
-          <ButtonSubmit type="submit">Сохранить</ButtonSubmit>
+          <ButtonSubmit type="submit">{t('formPage.buttonSave')}</ButtonSubmit>
         </form>
       </FormContainer>
     </FormSection>

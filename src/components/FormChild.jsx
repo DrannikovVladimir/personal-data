@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 import colors from '../constants/color';
 import { Label, Input } from './FormPage';
@@ -43,6 +44,7 @@ const ButtonRemove = styled.button`
 `;
 
 const FormChild = ({ id }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { children } = useSelector((state) => state.user);
   const currentChild = children.find((child) => child.id === id);
@@ -62,7 +64,7 @@ const FormChild = ({ id }) => {
   return (
     <ChildInputWrapper>
       <FormGroupChild>
-        <Label htmlFor="name">Имя</Label>
+        <Label htmlFor="name">{t('formPage.labelName')}</Label>
         <Input
           id="name"
           name="name"
@@ -72,7 +74,7 @@ const FormChild = ({ id }) => {
         />
       </FormGroupChild>
       <FormGroupChild>
-        <Label htmlFor="age">Возраст</Label>
+        <Label htmlFor="age">{t('formPage.labelAge')}</Label>
         <Input
           id="age"
           name="age"
@@ -81,7 +83,7 @@ const FormChild = ({ id }) => {
           value={currentChild.age}
         />
       </FormGroupChild>
-      <ButtonRemove type="button" onClick={handleRemoveButton}>Удалить</ButtonRemove>
+      <ButtonRemove type="button" onClick={handleRemoveButton}>{t('formChild.buttonRemove')}</ButtonRemove>
     </ChildInputWrapper>
   )
 };

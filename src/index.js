@@ -1,14 +1,9 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
-import { store } from './store';
-import { Provider } from 'react-redux';
+
 import "@fontsource/montserrat";
 import './index.css';
-import App from './App';
+import init from './init';
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-);
+init().then((vdom) => {
+  ReactDOM.render(vdom, document.querySelector('#root'));
+});
