@@ -101,7 +101,7 @@ const PreviewPage = () => {
             {' '}
             {user.age}
             {' '}
-            лет
+            {getFormattedYear(user.age)}
           </UserText>
         : <FeedbackTextUser>{t('previewPage.feedbackPersonalData')}</FeedbackTextUser>}
       <Title>{t('previewPage.childrenTitle')}</Title>
