@@ -15,7 +15,7 @@ const init = async () => {
       resources: {
         ru
       },
-      debug: true,
+      debug: false,
       fallbackLng: 'ru',
     });
 
