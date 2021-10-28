@@ -7,7 +7,7 @@ import Logo from './icons/Logo';
 import colors from '../constants/color';
 
 const HeaderSection = styled.header`
-  box-shadow: 0px 1px 0px ${colors.borderColor};
+  border-bottom: 1px solid ${colors.borderColor};
 `;
 
 const HeaderContainer = styled.div`
